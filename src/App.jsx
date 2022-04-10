@@ -1,11 +1,10 @@
 import "./App.css";
+import { HomePage } from "./Pages/pageExport";
 
 const App = () => {
   return (
-    <div className="App flex justify-center align-middle">
-      <button className="bg-blue-500 hover:bg-blue-600 text-white text-lg p-3 rounded m-4 ">
-        Tailwind testing
-      </button>
+    <div className="font-roboto">
+      <HomePage />
     </div>
   );
 };
