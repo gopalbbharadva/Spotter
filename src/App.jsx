@@ -1,10 +1,9 @@
 import "./App.css";
-import { HomePage } from "./Pages/pageExport";
 
 const App = () => {
   return (
     <div className="font-roboto">
-      <HomePage />
+      <button className="bg-sky-500 p-4">Tailwind</button>
     </div>
   );
 };
