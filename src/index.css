@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .features > svg {
+    @apply hover:text-sky-600;
+    @apply cursor-pointer;
+  }
+}
