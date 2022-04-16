@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const LoginForm = () => {
   return (
-    <div className="w-full p-3 border rounded-sm flex flex-col  md:w-80 xl:w-80">
+    <div className="m-auto w-80 max-w-full p-3 border rounded-sm flex flex-col xl:w-80">
       <h1 className="text-5xl mb-10 font-lobster text-center font-serif ">
         Spotter
       </h1>
@@ -29,12 +29,14 @@ export const LoginForm = () => {
         >
           Log in as a Guest
         </button>
-        <button
-          className="px-4 py-1 border-none bg-sky-500 text-white hover:bg-sky-600 
+        <Link to="/posts">
+          <button
+            className="px-4 py-1 w-full border-none bg-sky-500 text-white hover:bg-sky-600 
               font-semibold border rounded mt-3"
-        >
-          Log In
-        </button>
+          >
+            Log In
+          </button>
+        </Link>
         <div className="flex items-start">
           <div className="w-3/6 border-t mx-1 self-center border-gray-300"></div>
           <span className="px-2 my-2 text-gray-400 font-semibold text-center">
