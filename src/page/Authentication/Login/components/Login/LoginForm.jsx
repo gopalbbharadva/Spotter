@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const LoginForm = () => {
   return (
-    <div className="w-full p-3 border rounded-sm flex flex-col  md:w-80 xl:w-80">
+    <div className="m-auto w-80 max-w-full p-3 border rounded-sm flex flex-col xl:w-80">
       <h1 className="text-5xl mb-10 font-lobster text-center font-serif ">
         Spotter
       </h1>
