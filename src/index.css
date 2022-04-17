@@ -7,4 +7,12 @@
     @apply hover:text-sky-600;
     @apply cursor-pointer;
   }
+  .profile-area p,
+  button {
+    @apply text-gray-500;
+    @apply mr-4
+  }
+  .profile-area span {
+    @apply text-black;
+  }
 }

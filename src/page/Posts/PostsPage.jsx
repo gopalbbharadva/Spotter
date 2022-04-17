@@ -5,7 +5,6 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 export const PostsPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
       <div className="flex justify-center border">
         <div>
           <PostCard showImage={true} />
