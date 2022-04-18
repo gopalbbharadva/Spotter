@@ -8,9 +8,9 @@ export const PostCard = ({ showImage }) => {
       <div className="p-3 flex justify-start items-center cursor-pointer">
         <div className="w-10 h-10">
           <img
-            className="w-full h-full object-cover rounded-full"
+            className="profile-avatar"
             src="https://treatiseui.netlify.app/Images/ian-dooley-lg.jpg"
-            alt=""
+            alt="profile picture"
           />
         </div>
         <p className="ml-2 text-sm">admin user</p>

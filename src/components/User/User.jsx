@@ -5,7 +5,7 @@ export const User = ({ imgSrc }) => {
     <div className="mt-5 flex justify-start items-center cursor-pointer">
       <div className="w-10 h-10">
         <img
-          className="w-full h-full object-cover rounded-full"
+          className="profile-avatar"
           src={imgSrc}
           alt=""
         />

@@ -22,8 +22,9 @@ export const Navbar = () => {
           <Link to="/profile">
             <div className="w-8 h-8 cursor-pointer">
               <img
-                className="w-full h-full object-cover rounded-full "
+                className="profile-avatar"
                 src="https://treatiseui.netlify.app/Images/ian-dooley-lg.jpg"
+                alt="profile picture"
               />
             </div>
           </Link>
