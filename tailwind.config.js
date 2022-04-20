@@ -5,6 +5,7 @@ module.exports = {
       lobster: "Lobster Two,cursive",
       roboto: "Roboto,sans-serif",
     },
+
     screens: {
       xs: "440px",
       // => @media (min-width: 540px) { ... }
@@ -23,7 +24,11 @@ module.exports = {
       "2xl": "1436px",
       // => @media (min-width: 1436px) { ... }
     },
-    extend: {},
+    extend: {
+      colors: {
+        "black-rgba": "rgba(0, 0, 0, 0.6)",
+      },
+    },
   },
   plugins: [],
 };
