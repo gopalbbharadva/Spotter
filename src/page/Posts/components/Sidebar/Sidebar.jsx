@@ -7,7 +7,7 @@ export const Sidebar = () => {
       <div className="flex justify-start items-center cursor-pointer">
         <div className="w-16 h-16">
           <img
-            className="w-full h-full object-cover rounded-full"
+            className="profile-avatar"
             src="https://treatiseui.netlify.app/Images/ian-dooley-lg.jpg"
             alt=""
           />

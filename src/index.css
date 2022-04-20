@@ -8,3 +8,24 @@
     @apply cursor-pointer;
   }
 }
+.card-container {
+  @apply flex flex-col justify-center items-center;
+}
+.profile-area {
+  @apply w-full max-w-xl m-auto flex justify-start
+  flex-col p-3 xs:flex-row;
+}
+.edit-btn {
+  @apply border px-2 mr-3 py-1 rounded text-gray-500 hover:bg-gray-100;
+}
+.profile-area span {
+  @apply text-black;
+}
+.profile-area button {
+  @apply text-gray-500;
+  @apply ml-4;
+}
+
+.profile-avatar {
+  @apply w-full h-full object-cover rounded-full;
+}
