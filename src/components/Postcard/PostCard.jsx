@@ -5,7 +5,7 @@ import { IoShareSocialOutline } from "react-icons/io5";
 export const PostCard = ({ showImage }) => {
   return (
     <div className="my-2 w-full max-w-xl border">
-      <div className="p-3 flex justify-start items-center cursor-pointer">
+      <div className="p-3 flex justify-start items-center">
         <div className="w-10 h-10">
           <img
             className="profile-avatar"

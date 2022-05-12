@@ -4,22 +4,20 @@ import { PostCard } from "../../components/componentExport";
 
 export const Profile = () => {
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen p-2 ">
       <div className="card-container">
         <div className="profile-area">
-          <div className="p-2 w-32 h-32 flex xs:self-center">
+          <div className="w-20 h-20 xs:w-32 xs:h-32 flex xs:self-center flex-shrink-0">
             <img
               className="profile-avatar"
               src="https://treatiseui.netlify.app/Images/ian-dooley-lg.jpg"
               alt="profile picture"
             />
           </div>
-          <div className="flex p-2 flex-col flex-wrap">
+          <div className="flex m-0 p-2 xs:p-3 xs:ml-2 flex-col flex-wrap">
             <div className="flex items-center flex-wrap">
               <p className="text-2xl mr-3 text-sky-500">Admin user</p>
-              <button className="edit-btn">
-                Edit profile
-              </button>
+              <button className="edit-btn">Edit profile</button>
               <button>
                 <IoSettingsOutline className="text-2xl" />
               </button>

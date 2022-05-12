@@ -3,7 +3,7 @@ import { User } from "../../../../components/componentExport";
 
 export const Sidebar = () => {
   return (
-    <div className="hidden w-80 p-10 my-2 lg:block">
+    <div className="sticky top-28">
       <div className="flex justify-start items-center cursor-pointer">
         <div className="w-16 h-16">
           <img

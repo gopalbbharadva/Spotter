@@ -16,7 +16,7 @@ export const Navbar = () => {
           placeholder="Search"
         />
         <div className="flex justify-center items-center">
-          <div className="features hidden text-2xl  lg:flex">
+          <div className="features hidden text-2xl lg:flex">
             <Featurelist />
           </div>
           <Link to="/profile">
