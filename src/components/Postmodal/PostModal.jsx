@@ -18,6 +18,7 @@ export const PostModal = () => {
           <img
             className="profile-avatar"
             src="https://treatiseui.netlify.app/Images/ian-dooley-lg.jpg"
+            alt="profile dp"
           />
         </div>
         <form className="post-form">
