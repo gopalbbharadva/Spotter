@@ -12,7 +12,7 @@ export const Navbar = () => {
         <input
           className="p-1 max-w-xs mx-2 w-full border rounded bg-gray-100 
           focus:outline-none focus:border-sky-500"
-          type="text"
+          type="search"
           placeholder="Search"
         />
         <div className="flex justify-center items-center">
