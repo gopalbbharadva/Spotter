@@ -1,8 +1,19 @@
 import React from "react";
-import { IoSettingsOutline } from "react-icons/io5";
 import { PostCard } from "../../components/componentExport";
+import { AiOutlineLogout } from "react-icons/ai";
+import { logoutUser } from "../../features/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    dispatch(logoutUser());
+    navigate("/");
+  };
+
   return (
     <div className="w-screen h-screen p-2 ">
       <div className="card-container">
@@ -18,8 +29,8 @@ export const Profile = () => {
             <div className="flex items-center flex-wrap">
               <p className="text-2xl mr-3 text-sky-500">Admin user</p>
               <button className="edit-btn">Edit profile</button>
-              <button>
-                <IoSettingsOutline className="text-2xl" />
+              <button onClick={logoutHandler}>
+                <AiOutlineLogout className="text-2xl hover:text-sky-500" />
               </button>
             </div>
             <div className="mt-4 flex justify-between flex-wrap">
