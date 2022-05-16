@@ -15,15 +15,15 @@
   @apply w-full max-w-xl m-auto flex justify-start
   flex-col py-2 xs:flex-row;
 }
-.edit-btn {
-  @apply border px-2 mr-3 py-1 rounded text-gray-500 hover:bg-gray-100;
-}
+
 .profile-area span {
   @apply text-black;
 }
-.profile-area button {
-  @apply text-gray-500;
-  @apply ml-2;
+.follow-btn {
+  @apply bg-sky-500 hover:bg-sky-600 text-white rounded-sm mx-2 py-1 px-3;
+}
+.edit-profile-btn {
+  @apply text-gray-500 hover:bg-gray-100 border px-3 mx-2 py-1 rounded;
 }
 
 .profile-avatar {
@@ -62,6 +62,13 @@
 .post-form {
   @apply pt-3 w-80 max-w-full flex items-start justify-start flex-col;
 }
+.profile-form {
+  @apply pt-3 w-80 max-w-full flex items-center flex-col;
+}
+
+.profile-form input {
+  @apply p-1 w-full text-base border rounded focus:outline-none focus:border-sky-500;
+}
 
 .post-form input,
 textarea {
@@ -76,9 +83,13 @@ textarea {
 }
 
 .btn-area button {
-  @apply py-1 px-4 rounded-md text-base bg-sky-500 hover:bg-sky-600 text-white;
+  @apply py-1 px-4 rounded-md ml-auto text-base bg-sky-500 hover:bg-sky-600 text-white;
 }
 
 .eyeslash-icon {
   @apply top-5 right-2 cursor-pointer text-lg text-gray-500 hover:text-black absolute;
+}
+
+.dummy-avatar {
+  @apply bg-purple-400 flex justify-center items-center text-base;
 }

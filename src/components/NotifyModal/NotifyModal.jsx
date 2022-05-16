@@ -36,8 +36,8 @@ export const NotifyModal = () => {
         >
           <VscChromeClose />
         </button>
-        {notifyInfo.map((item) => (
-          <UserNotify user={item} />
+        {notifyInfo.map((item, index) => (
+          <UserNotify user={item} key={index} />
         ))}
       </div>
     </div>

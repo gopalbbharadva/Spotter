@@ -1,27 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLoginForm } from "../../../../../hooks/hooksExport";
 import { userLoginAction } from "../../../../../features/authSlice";
 import { guestUser } from "../../../../../constants";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 export const LoginForm = () => {
-  const { loginData, loginErrors, setLoginData, loginFormHandler } =
-    useLoginForm();
+  const { loginData, loginErrors, loginFormHandler } = useLoginForm();
   const [showPassword, setShowPassword] = useState({
     type: "password",
     isShow: false,
   });
   const dispatch = useDispatch();
-  const authData = useSelector((state) => state.user);
-  const navigate = useNavigate();
-
-  const loginHandler = async (loginCredentials) => {
-    setLoginData(loginCredentials);
-    const res = await dispatch(userLoginAction(loginCredentials));
-    res.payload.encodedToken && navigate("/posts");
-  };
+  const authData = useSelector((state) => state.auth);
 
   return (
     <div className="m-auto w-80 max-w-full p-3 border rounded-sm flex flex-col xl:w-80">
@@ -82,7 +74,7 @@ export const LoginForm = () => {
         )}
         <button
           type="button"
-          onClick={() => loginHandler(guestUser)}
+          onClick={() => dispatch(userLoginAction(guestUser))}
           className="px-4 py-1 outlise-2 outline-2 text-sky-500 hover:bg-sky-600 
           hover:text-white font-semibold border rounded mt-5"
         >

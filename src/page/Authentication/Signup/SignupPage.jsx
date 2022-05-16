@@ -1,28 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSignUpForm, useTogglePassword } from "../../../hooks/hooksExport";
 import { userSignUpAction } from "../../../features/authSlice";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 export const SignupPage = () => {
-  const { signUpErrors, signUpData, setSignUpData, signUpFormHandler } =
-    useSignUpForm({});
+  const { signUpErrors, signUpData, signUpFormHandler } = useSignUpForm({});
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const authData = useSelector((state) => state.user);
+  const { isLoading, error } = useSelector((state) => state.auth);
   const {
     passwordToggle,
     checkPasswordView,
     confirmPasswordToggle,
     checkConfirmPasswordView,
   } = useTogglePassword();
-
-  const signupHandler = async (signUpCredentials) => {
-    setSignUpData(signUpCredentials);
-    const res = await dispatch(userSignUpAction(signUpCredentials));
-    res.payload.encodedToken && navigate("/posts");
-  };
 
   return (
     <div
@@ -81,6 +73,7 @@ export const SignupPage = () => {
         {signUpErrors.username && (
           <p className="text-red-500">{signUpErrors.username}</p>
         )}
+        {<p className="text-red-500">{error}</p>}
         <input
           required
           onChange={signUpFormHandler}
@@ -144,11 +137,10 @@ export const SignupPage = () => {
           <p className="text-red-500">{signUpErrors.confirmpassword}</p>
         )}
         <button
-          onClick={() => signupHandler(signUpData)}
           className="px-4 py-1 w-full border-none bg-sky-500 text-white hover:bg-sky-600 
               font-semibold border rounded mt-3"
         >
-          {authData.isLoading ? "Loading..." : "Sign up"}
+          {isLoading ? "Loading..." : "Sign up"}
         </button>
         <div className="flex items-start">
           <div className="w-3/6 border-t mx-1 self-center border-gray-300"></div>

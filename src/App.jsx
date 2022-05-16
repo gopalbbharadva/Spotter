@@ -6,7 +6,7 @@ import { AppRoutes } from "./routes/AppRoutes";
 
 const App = () => {
   const { showPostModal, showNotifyModal } = useModal();
-  const authData = useSelector((state) => state.user);
+  const authData = useSelector((state) => state.auth);
 
   return (
     <div className="font-roboto">
