@@ -43,7 +43,7 @@ export const Navbar = () => {
                 <img
                   className="profile-avatar"
                   src={currentUser?.profileImg}
-                  alt="profile picture"
+                  alt={currentUser?.firstname}
                 />
               )}
             </div>

@@ -30,7 +30,7 @@ export const Sidebar = ({ currentUser, users }) => {
                   <img
                     className="profile-avatar"
                     src={currentUser?.profileImg}
-                    alt="user profile dp"
+                    alt={currentUser?.username}
                   />
                 )}
               </div>

@@ -17,7 +17,7 @@ export const PostCard = ({ currentUser }) => {
             <img
               className="profile-avatar"
               src={currentUser?.profileImg}
-              alt="profile picture"
+              alt={currentUser?.username}
             />
           )}
         </div>

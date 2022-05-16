@@ -55,7 +55,7 @@ export const ProfileModal = ({ currentUser, setIsEditProfile }) => {
               <img
                 className="profile-avatar"
                 src={image !== "" ? image : updateProfileData.profileImg}
-                alt="profile dp"
+                alt={updateProfileData.username}
               />
             )}
             <label className="cursor-pointer absolute rounded-sm right-1 top-12">

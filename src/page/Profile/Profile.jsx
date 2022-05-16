@@ -49,7 +49,7 @@ export const Profile = () => {
                   <img
                     className="profile-avatar"
                     src={currentUser?.profileImg}
-                    alt="profile picture"
+                    alt={currentUser?.username}
                   />
                 )}
               </div>

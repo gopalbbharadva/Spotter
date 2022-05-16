@@ -3,6 +3,7 @@ import { BsCardImage } from "react-icons/bs";
 import { VscChromeClose } from "react-icons/vsc";
 import { useSelector } from "react-redux";
 import { useModal } from "../../contexts/ModalContext";
+import { DummyAvatar } from "../componentExport";
 
 export const PostModal = () => {
   const { setShowPostModal } = useModal();
@@ -25,14 +26,15 @@ export const PostModal = () => {
         </button>
         <div className="w-16 h-16 flex-shrink-0 mt-5">
           {currentUser?.profileImg === "" ? (
-            <div className="profile-avatar dummy-avatar">
-              {currentUser?.firstname[0]} {currentUser?.lastname[0]}
-            </div>
+            <DummyAvatar
+              firstname={currentUser.firstname}
+              lastname={currentUser.lastname}
+            />
           ) : (
             <img
               className="profile-avatar"
               src={currentUser?.profileImg}
-              alt="profile dp"
+              alt={currentUser?.username}
             />
           )}
         </div>
