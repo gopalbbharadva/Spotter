@@ -5,7 +5,7 @@ import { LoginPage, PostsPage, Profile, SignupPage } from "../page/pageExport";
 import { PrivateRoute } from "./PrivateRoute";
 
 export const AppRoutes = () => {
-  const authData = useSelector((state) => state.user);
+  const authData = useSelector((state) => state.auth);
 
   return (
     <Routes>
@@ -18,7 +18,7 @@ export const AppRoutes = () => {
         }
       />
       <Route
-        path="/profile"
+        path="/profile/:userName"
         element={
           <PrivateRoute>
             <Profile />

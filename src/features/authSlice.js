@@ -3,7 +3,7 @@ import { loginService, signUpService } from "../services/authServices";
 
 const initialState = {
   isLoading: false,
-  user: JSON.parse(localStorage.getItem("authData"))?.user || "",
+  user: JSON.parse(localStorage.getItem("authData"))?.user || null,
   token: JSON.parse(localStorage.getItem("authData"))?.token || "",
   error: "",
 };
@@ -80,8 +80,8 @@ export const authSlice = createSlice({
       userSignUpAction.fulfilled,
       (state, { payload: { createdUser, encodedToken } }) => {
         state.isLoading = false;
-        state.user = createdUser;
         state.token = encodedToken;
+        state.user = createdUser;
         state.error = "";
         localStorage.setItem(
           "authData",
