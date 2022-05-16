@@ -1,0 +1,13 @@
+.loader-container::after {
+  content: "";
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  animation: loader-container 1s linear infinite;
+}
+
+@keyframes loader-container {
+  to {
+    transform: rotate(1turn);
+  }
+}

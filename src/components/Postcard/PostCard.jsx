@@ -2,31 +2,29 @@ import React from "react";
 import { VscHeart, VscBookmark, VscComment } from "react-icons/vsc";
 import { IoShareSocialOutline } from "react-icons/io5";
 
-export const PostCard = ({ showImage }) => {
+export const PostCard = ({ currentUser }) => {
   return (
     <div className="my-2 w-full max-w-xl border">
       <div className="p-3 flex justify-start items-center">
         <div className="w-10 h-10">
-          <img
-            className="profile-avatar"
-            src="https://treatiseui.netlify.app/Images/ian-dooley-lg.jpg"
-            alt="profile picture"
-          />
+          {currentUser?.profileImg === "" ? (
+            <div className="profile-avatar dummy-avatar">
+              {currentUser.firstname[0]} {currentUser.lastname[0]}
+            </div>
+          ) : (
+            <img
+              className="profile-avatar"
+              src={currentUser?.profileImg}
+              alt="profile picture"
+            />
+          )}
         </div>
-        <p className="ml-2 text-sm">admin user</p>
+        <p className="ml-2 text-sm">{currentUser?.username}</p>
       </div>
-      {showImage ? (
-        <img
-          className="cursor-pointer"
-          src="https://media.smallbiztrends.com/2021/01/Active-Social-Media-Presence.png"
-          alt="social media advertisement"
-        />
-      ) : (
-        <p className="p-3">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe neque
-          eum tenetur iste reiciendis, aliquam explicabo amet ab maxime ratione.
-        </p>
-      )}
+      <p className="p-3">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe neque
+        eum tenetur iste reiciendis, aliquam explicabo amet ab maxime ratione.
+      </p>
       <div className="features flex p-3 text-2xl">
         <VscHeart />
         <VscComment className="mx-3" />
