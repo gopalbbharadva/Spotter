@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { User } from "../../../../components/componentExport";
-import { Loader } from "../../../../components/Loader/Loader";
+import { DummyAvatar, Loader } from "../../../../components/componentExport";
 
 export const Sidebar = ({ currentUser, users }) => {
   const {
@@ -22,9 +22,10 @@ export const Sidebar = ({ currentUser, users }) => {
             <div className="flex justify-start items-center cursor-pointer">
               <div className="w-16 h-16">
                 {currentUser?.profileImg === "" ? (
-                  <div className="profile-avatar dummy-avatar">
-                    {currentUser?.firstname[0]} {currentUser?.lastname[0]}
-                  </div>
+                  <DummyAvatar
+                    firstname={currentUser?.firstname}
+                    lastname={currentUser?.lastname}
+                  />
                 ) : (
                   <img
                     className="profile-avatar"

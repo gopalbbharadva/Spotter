@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { DummyAvatar } from "../componentExport";
 import { Featurelist } from "./Featurelist";
 
 export const Navbar = () => {
@@ -34,9 +35,10 @@ export const Navbar = () => {
           <Link to={`/profile/${username}`}>
             <div className="w-8 h-8 cursor-pointer">
               {currentUser?.profileImg === "" ? (
-                <div className="profile-avatar dummy-avatar">
-                  {currentUser?.firstname[0]} {currentUser?.lastname[0]}
-                </div>
+                <DummyAvatar
+                  firstname={currentUser?.firstname}
+                  lastname={currentUser?.lastname}
+                />
               ) : (
                 <img
                   className="profile-avatar"

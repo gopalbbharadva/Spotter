@@ -1,6 +1,7 @@
 import React from "react";
 import { VscHeart, VscBookmark, VscComment } from "react-icons/vsc";
 import { IoShareSocialOutline } from "react-icons/io5";
+import { DummyAvatar } from "../componentExport";
 
 export const PostCard = ({ currentUser }) => {
   return (
@@ -8,9 +9,10 @@ export const PostCard = ({ currentUser }) => {
       <div className="p-3 flex justify-start items-center">
         <div className="w-10 h-10">
           {currentUser?.profileImg === "" ? (
-            <div className="profile-avatar dummy-avatar">
-              {currentUser.firstname[0]} {currentUser.lastname[0]}
-            </div>
+            <DummyAvatar
+              firstname={currentUser?.firstname}
+              lastname={currentUser?.lastname}
+            />
           ) : (
             <img
               className="profile-avatar"

@@ -1,5 +1,6 @@
 import { Sidebar } from "../page/Posts/components/Sidebar/Sidebar";
 import { ProfileModal } from "../page/Profile/components/ProfileModal";
+import { DummyAvatar } from "./DummyAvatar/DummyAvatar";
 import { Loader } from "./Loader/Loader";
 import { Navbar } from "./Navbar/Navbar";
 import { NotifyModal } from "./NotifyModal/NotifyModal";
@@ -16,4 +17,5 @@ export {
   Loader,
   ProfileModal,
   Sidebar,
+  DummyAvatar,
 };

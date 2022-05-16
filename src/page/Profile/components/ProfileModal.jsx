@@ -3,6 +3,7 @@ import { VscChromeClose } from "react-icons/vsc";
 import { FiCamera } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../features/usersSlice";
+import { DummyAvatar } from "../../../components/componentExport";
 
 export const ProfileModal = ({ currentUser, setIsEditProfile }) => {
   const dispatch = useDispatch();
@@ -33,7 +34,11 @@ export const ProfileModal = ({ currentUser, setIsEditProfile }) => {
             e.preventDefault();
             dispatch(
               updateUser({
-                userData: { ...updateProfileData, profileImg: image },
+                userData: {
+                  ...updateProfileData,
+                  profileImg:
+                    image !== "" ? image : updateProfileData.profileImg,
+                },
                 token,
               })
             );
@@ -42,9 +47,10 @@ export const ProfileModal = ({ currentUser, setIsEditProfile }) => {
         >
           <div className="w-16 h-16 flex-shrink-0 relative">
             {updateProfileData.profileImg === "" ? (
-              <div className="profile-avatar dummy-avatar">
-                {updateProfileData.firstname[0]} {updateProfileData.lastname[0]}
-              </div>
+              <DummyAvatar
+                firstname={updateProfileData.firstname}
+                lastname={updateProfileData.lastname}
+              />
             ) : (
               <img
                 className="profile-avatar"
@@ -57,7 +63,6 @@ export const ProfileModal = ({ currentUser, setIsEditProfile }) => {
                 <FiCamera />
               </span>
               <input
-                required
                 onChange={(e) => imageHandler(e)}
                 accept="image/*"
                 type="file"
