@@ -3,24 +3,39 @@ import {
   PostCard,
   Loader,
   ProfileModal,
+  FollowersModal,
+  FollowingModal,
 } from "../../components/componentExport";
 import { AiOutlineLogout } from "react-icons/ai";
 import { logoutUser } from "../../features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getAllUsers } from "../../features/usersSlice";
+import {
+  followUser,
+  getAllUsers,
+  unFollowUser,
+} from "../../features/usersSlice";
 
 export const Profile = () => {
   const [isEditProfile, setIsEditProfile] = useState(false);
+  const [isFollowersList, setIsFollowersList] = useState(false);
+  const [isFollowingList, setIsFollowingList] = useState(false);
 
   const dispatch = useDispatch();
   const { userName } = useParams();
   const {
-    auth: { user },
+    auth: { user, token },
     allUsers: { users, isLoading },
   } = useSelector((state) => state);
 
   const currentUser = users?.find((user) => user.username === userName);
+  const loggedInUser = users?.find(
+    ({ username }) => username === user.username
+  );
+
+  const isFollowing = loggedInUser?.following.find(
+    (user) => currentUser?.username === user.username
+  );
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -38,6 +53,19 @@ export const Profile = () => {
               setIsEditProfile={setIsEditProfile}
             />
           )}
+          {isFollowersList && currentUser.followers.length > 0 && (
+            <FollowersModal
+              followerList={currentUser.followers}
+              setIsFollowersList={setIsFollowersList}
+            />
+          )}
+          {isFollowingList && currentUser.following.length > 0 && (
+            <FollowingModal
+              followingList={currentUser.following}
+              setIsFollowingList={setIsFollowingList}
+            />
+          )}
+
           <div className="card-container">
             <div className="profile-area">
               <div className="w-20 h-20 xs:w-32 xs:h-32 flex xs:self-center flex-shrink-0">
@@ -59,28 +87,66 @@ export const Profile = () => {
                     {currentUser?.username}
                   </p>
                   {user.username !== currentUser?.username ? (
-                    <button className="follow-btn">follow</button>
+                    isFollowing ? (
+                      <button
+                        onClick={() =>
+                          dispatch(
+                            unFollowUser({ userId: currentUser._id, token })
+                          )
+                        }
+                        className="unfollow-btn"
+                      >
+                        Unfollow
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() =>
+                          dispatch(
+                            followUser({ userId: currentUser._id, token })
+                          )
+                        }
+                        className="follow-btn"
+                      >
+                        Follow
+                      </button>
+                    )
                   ) : (
-                    <button
-                      onClick={() => setIsEditProfile((prev) => !prev)}
-                      className="edit-profile-btn"
-                    >
-                      Edit profile
-                    </button>
+                    <>
+                      <button
+                        onClick={() => setIsEditProfile((prev) => !prev)}
+                        className="edit-profile-btn"
+                      >
+                        Edit profile
+                      </button>
+                      <button onClick={() => dispatch(logoutUser())}>
+                        <AiOutlineLogout className="text-2xl hover:text-sky-500" />
+                      </button>
+                    </>
                   )}
-                  <button onClick={() => dispatch(logoutUser())}>
-                    <AiOutlineLogout className="text-2xl hover:text-sky-500" />
-                  </button>
                 </div>
                 <div className="mt-4 flex justify-between flex-wrap">
-                  <p className="text-gray-500">
+                  <p className="text-gray-500 select-none">
                     <span>4</span> posts
                   </p>
-                  <button className="text-gray-500">
-                    <span>20 </span>followers
+                  <button
+                    onClick={() => setIsFollowersList(true)}
+                    className={`text-gray-500 ${
+                      currentUser?.username !== user.username
+                        ? "pointer-events-none"
+                        : ""
+                    }`}
+                  >
+                    <span>{currentUser?.followers.length}</span> followers
                   </button>
-                  <button className="text-gray-500">
-                    <span>10 </span>following
+                  <button
+                    onClick={() => setIsFollowingList(true)}
+                    className={`text-gray-500 ${
+                      currentUser?.username !== user.username
+                        ? "pointer-events-none"
+                        : ""
+                    }`}
+                  >
+                    <span>{currentUser?.following.length}</span> following
                   </button>
                 </div>
                 <div className="mt-4">
