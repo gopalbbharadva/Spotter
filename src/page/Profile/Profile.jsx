@@ -3,8 +3,7 @@ import {
   PostCard,
   Loader,
   ProfileModal,
-  FollowersModal,
-  FollowingModal,
+  FollowCombineModal,
 } from "../../components/componentExport";
 import { AiOutlineLogout } from "react-icons/ai";
 import { logoutUser } from "../../features/authSlice";
@@ -54,18 +53,17 @@ export const Profile = () => {
             />
           )}
           {isFollowersList && currentUser.followers.length > 0 && (
-            <FollowersModal
-              followerList={currentUser.followers}
-              setIsFollowersList={setIsFollowersList}
+            <FollowCombineModal
+              userList={currentUser.followers}
+              setShowFollowModal={setIsFollowersList}
             />
           )}
           {isFollowingList && currentUser.following.length > 0 && (
-            <FollowingModal
-              followingList={currentUser.following}
-              setIsFollowingList={setIsFollowingList}
+            <FollowCombineModal
+              userList={currentUser.following}
+              setShowFollowModal={setIsFollowingList}
             />
           )}
-
           <div className="card-container">
             <div className="profile-area">
               <div className="w-20 h-20 xs:w-32 xs:h-32 flex xs:self-center flex-shrink-0">
