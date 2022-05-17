@@ -24,7 +24,7 @@ export const PostsPage = () => {
           <PostCard currentUser={currentUser} />
           <PostCard currentUser={currentUser} />
         </div>
-        <div className="hidden w-80 p-10 my-2 lg:block">
+        <div className="hidden w-96 p-10 my-2 lg:block">
           <Sidebar currentUser={currentUser} users={users} />
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { Sidebar } from "../page/Posts/components/Sidebar/Sidebar";
+import { FollowCombineModal } from "../page/Profile/components/FollowCombineModal";
 import { ProfileModal } from "../page/Profile/components/ProfileModal";
 import { DummyAvatar } from "./DummyAvatar/DummyAvatar";
 import { Loader } from "./Loader/Loader";
@@ -18,4 +19,5 @@ export {
   ProfileModal,
   Sidebar,
   DummyAvatar,
+  FollowCombineModal,
 };

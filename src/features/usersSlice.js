@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import {
+  followService,
+  unFollowService,
+} from "../services/followUnfollowServices";
 
 const initialState = {
   isLoading: false,
@@ -37,6 +41,30 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const followUser = createAsyncThunk(
+  "users/followUser",
+  async ({ userId, token }, { rejectWithValue }) => {
+    try {
+      const res = await followService(userId, token);
+      if (res.status === 200) return res.data;
+    } catch (error) {
+      return rejectWithValue({ message: "User already following" });
+    }
+  }
+);
+
+export const unFollowUser = createAsyncThunk(
+  "users/unFollowUser",
+  async ({ userId, token }, { rejectWithValue }) => {
+    try {
+      const res = await unFollowService(userId, token);
+      if (res.status === 200) return res.data;
+    } catch (error) {
+      return rejectWithValue({ message: "User already not following" });
+    }
+  }
+);
+
 const usersSlice = createSlice({
   name: "users",
   initialState,
@@ -70,6 +98,54 @@ const usersSlice = createSlice({
     });
 
     builder.addCase(updateUser.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload.message;
+    });
+
+    builder.addCase(followUser.pending, (state, { payload }) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(
+      followUser.fulfilled,
+      (state, { payload: { user, followUser } }) => {
+        state.isLoading = false;
+
+        state.users = state.users.map((currentUser) =>
+          currentUser._id === user._id ? user : currentUser
+        );
+        state.users = state.users.map((currentUser) =>
+          currentUser._id === followUser._id ? followUser : currentUser
+        );
+        state.error = "";
+      }
+    );
+
+    builder.addCase(followUser.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload.message;
+    });
+
+    builder.addCase(unFollowUser.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(
+      unFollowUser.fulfilled,
+      (state, { payload: { user, followUser } }) => {
+        state.isLoading = false;
+
+        state.users = state.users.map((currentUser) =>
+          currentUser._id === followUser._id ? followUser : currentUser
+        );
+
+        state.users = state.users.map((currentUser) =>
+          currentUser._id === user._id ? user : currentUser
+        );
+      }
+    );
+
+    builder.addCase(unFollowUser.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload.message;
     });
