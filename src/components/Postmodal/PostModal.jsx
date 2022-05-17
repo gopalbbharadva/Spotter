@@ -16,8 +16,8 @@ export const PostModal = () => {
   const currentUser = users?.find(({ username }) => username === user.username);
 
   return (
-    <div className="post-modal-container">
-      <div className="post-modal">
+    <div className="modal-container">
+      <div className="modal">
         <button
           className="modal-close-btn"
           onClick={() => setShowPostModal(false)}

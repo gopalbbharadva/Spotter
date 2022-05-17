@@ -20,8 +20,8 @@ export const ProfileModal = ({ currentUser, setIsEditProfile }) => {
   };
 
   return (
-    <div className="post-modal-container">
-      <div className="post-modal">
+    <div className="modal-container">
+      <div className="modal">
         <button
           onClick={() => setIsEditProfile((prev) => !prev)}
           className="modal-close-btn"
