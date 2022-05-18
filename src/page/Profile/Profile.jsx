@@ -14,6 +14,7 @@ import {
   getAllUsers,
   unFollowUser,
 } from "../../features/usersSlice";
+import { getAllPosts } from "../../features/postSlice";
 
 export const Profile = () => {
   const [isEditProfile, setIsEditProfile] = useState(false);
@@ -25,6 +26,7 @@ export const Profile = () => {
   const {
     auth: { user, token },
     allUsers: { users, isLoading },
+    allPosts: { posts },
   } = useSelector((state) => state);
 
   const currentUser = users?.find((user) => user.username === userName);
@@ -35,9 +37,13 @@ export const Profile = () => {
   const isFollowing = loggedInUser?.following.find(
     (user) => currentUser?.username === user.username
   );
+  const currentUserPosts = posts?.filter(
+    (post) => post.username === currentUser?.username
+  );
 
   useEffect(() => {
     dispatch(getAllUsers());
+    dispatch(getAllPosts());
   }, []);
 
   return (
@@ -79,7 +85,7 @@ export const Profile = () => {
                   />
                 )}
               </div>
-              <div className="w-full flex-wrap flex m-0 p-2 xs:p-3 xs:ml-2 sm:w-3/5 flex-col ">
+              <div className="w-full flex-wrap  flex m-0 p-2 xs:p-3 xs:ml-2 sm:w-3/5 flex-col ">
                 <div className="flex flex-wrap items-center">
                   <p className="text-2xl mr-3 text-sky-500">
                     {currentUser?.username}
@@ -162,9 +168,13 @@ export const Profile = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-5">
-              <PostCard currentUser={currentUser} />
-              <PostCard currentUser={currentUser} />
+            <div
+              className="mt-5 w-full flex justify-center items-center 
+              flex-col max-w-full lg:w-2/3 "
+            >
+              {currentUserPosts.map((post) => (
+                <PostCard post={post} key={post._id} />
+              ))}
             </div>
           </div>
         </div>

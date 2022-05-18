@@ -17,7 +17,7 @@ export const Navbar = () => {
   return (
     <nav className="p-3 top-0 sticky z-10 shadow-md shadow-sky-100 bg-white">
       <div className="flex justify-evenly items-center">
-        <Link to="/posts">
+        <Link to="/">
           <h1 className="text-3xl font-lobster text-sky-500 cursor-pointer">
             Spotter
           </h1>

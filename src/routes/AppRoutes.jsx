@@ -10,7 +10,7 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route
-        path="/posts"
+        path="/"
         element={
           <PrivateRoute>
             <PostsPage />
@@ -27,13 +27,13 @@ export const AppRoutes = () => {
       />
       {!authData.token ? (
         <>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />{" "}
         </>
       ) : (
         <>
-          <Route path="/" element={<Navigate replace to="/posts" />} />
-          <Route path="/signup" element={<Navigate replace to="/posts" />} />
+          <Route path="/login" element={<Navigate replace to="/" />} />
+          <Route path="/signup" element={<Navigate replace to="/" />} />
         </>
       )}
     </Routes>

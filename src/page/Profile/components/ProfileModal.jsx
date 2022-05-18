@@ -11,7 +11,7 @@ export const ProfileModal = ({ currentUser, setIsEditProfile }) => {
   const [image, setImage] = useState("");
   const [updateProfileData, setUpdateProfileData] = useState(currentUser);
 
-  let imageHandler = (e) => {
+  const imageHandler = (e) => {
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
