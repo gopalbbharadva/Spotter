@@ -16,24 +16,24 @@ export const PostFeatureModal = () => {
     allPosts: { deletePostId },
   } = useSelector((state) => state);
 
+  const updateHandler = () => {
+    dispatch(postEdit(true));
+    dispatch(hidePostFeatureModal());
+    dispatch(showPostModal());
+  };
+  const closeModalHandler = () => {
+    dispatch(hidePostFeatureModal());
+    dispatch(setCurrentPost({ post: {} }));
+  };
+
   return (
     <div className="modal-container">
       <div className="modal flex-col">
-        <button
-          className="modal-close-btn"
-          onClick={() => {
-            dispatch(hidePostFeatureModal());
-            dispatch(setCurrentPost({ post: {} }));
-          }}
-        >
+        <button className="modal-close-btn" onClick={() => closeModalHandler()}>
           <VscChromeClose />
         </button>
         <button
-          onClick={() => {
-            dispatch(postEdit(true));
-            dispatch(hidePostFeatureModal());
-            dispatch(showPostModal());
-          }}
+          onClick={() => updateHandler()}
           className="text-sky-500 hover:text-sky-600"
         >
           Edit

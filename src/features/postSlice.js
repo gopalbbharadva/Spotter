@@ -38,7 +38,6 @@ export const postUserPost = createAsyncThunk(
       const res = await postService(postData, token);
       if (res.status === 201) return res.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue({ message: "Post is not failed" });
     }
   }
@@ -60,12 +59,9 @@ export const deleteUserPost = createAsyncThunk(
   "post/deleteUserPost",
   async ({ postId, token }, { rejectWithValue }) => {
     try {
-      console.log(postId);
       const res = await deletePostService(postId, token);
-      console.log(res);
       if (res.status === 201) return res.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue({ message: "Post deletion failed" });
     }
   }

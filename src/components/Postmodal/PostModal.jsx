@@ -88,7 +88,7 @@ export const PostModal = () => {
           }}
         >
           {image === "" && postData?.postImage === "" ? (
-            <img className="h-20" src={DummyImage} />
+            <img className="h-20" src={DummyImage} alt="post preview" />
           ) : (
             <img
               src={`${
@@ -96,6 +96,7 @@ export const PostModal = () => {
                   ? postData?.postImage
                   : image
               }`}
+              alt="post preview"
             />
           )}
           <input

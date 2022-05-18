@@ -19,6 +19,7 @@ export const PostCard = ({ post }) => {
     allPosts: { isShowPostFeatureModal, isShowPostModal },
   } = useSelector((state) => state);
   const postUser = users?.find((user) => user.username === post?.username);
+  console.log(post)
 
   return (
     <>
