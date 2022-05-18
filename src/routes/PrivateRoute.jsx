@@ -10,7 +10,7 @@ export const PrivateRoute = ({children}) => {
       {authData.token ? (
         children
       ) : (
-        <Navigate to="/" state={{ from: location }} replace />
+        <Navigate to="/login" state={{ from: location }} replace />
       )}
     </div>
   );

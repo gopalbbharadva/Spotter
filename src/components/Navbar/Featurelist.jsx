@@ -18,7 +18,7 @@ export const Featurelist = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <NavLink style={({ isActive }) => setProfileLink(isActive)} to="/posts">
+      <NavLink style={({ isActive }) => setProfileLink(isActive)} to="/">
         <VscHome className="mr-5" />
       </NavLink>
       <button onClick={() => dispatch(showPostModal())}>
