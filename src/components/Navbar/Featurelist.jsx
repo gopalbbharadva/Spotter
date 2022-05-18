@@ -4,6 +4,8 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineExplore } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { useModal } from "../../contexts/ModalContext";
+import { useDispatch } from "react-redux";
+import { showPostModal } from "../../features/postSlice";
 
 export const Featurelist = () => {
   const setProfileLink = (isActive) => {
@@ -12,14 +14,14 @@ export const Featurelist = () => {
     };
   };
 
-  const { setShowPostModal, setShowNotifyModal } = useModal();
-
+  const { setShowNotifyModal } = useModal();
+  const dispatch = useDispatch();
   return (
     <>
       <NavLink style={({ isActive }) => setProfileLink(isActive)} to="/posts">
         <VscHome className="mr-5" />
       </NavLink>
-      <button onClick={() => setShowPostModal((prev) => !prev)}>
+      <button onClick={() => dispatch(showPostModal())}>
         <VscDiffAdded className="mr-5 " />
       </button>
       <MdOutlineExplore className="mr-5" />
