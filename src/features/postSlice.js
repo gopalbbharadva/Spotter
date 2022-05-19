@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  addCommentToPostService,
+  deleteCommentOfPostService,
   deletePostService,
+  editCommentToPostService,
   getAllPostsService,
   postService,
   updatePostService,
@@ -63,6 +66,49 @@ export const deleteUserPost = createAsyncThunk(
       if (res.status === 201) return res.data;
     } catch (error) {
       return rejectWithValue({ message: "Post deletion failed" });
+    }
+  }
+);
+
+export const addCommentToPost = createAsyncThunk(
+  "post/addCommentToPost",
+  async ({ commentData, postId, token }, { rejectWithValue }) => {
+    console.log(commentData);
+    try {
+      const res = await addCommentToPostService(commentData, postId, token);
+      if (res.status === 201) return res.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue({ message: "Adding comments failed" });
+    }
+  }
+);
+
+export const editPostComment = createAsyncThunk(
+  "post/editPostComment",
+  async ({ commentData, postId, commentId, token }, { rejectWithValue }) => {
+    try {
+      const res = await editCommentToPostService(
+        commentData,
+        postId,
+        commentId,
+        token
+      );
+      if (res.status === 201) return res.data;
+    } catch (error) {
+      return rejectWithValue({ message: "could not update the comment" });
+    }
+  }
+);
+
+export const deletePostComment = createAsyncThunk(
+  "post/deletePostComment",
+  async ({ commentId, postId, token }, { rejectWithValue }) => {
+    try {
+      const res = await deleteCommentOfPostService(commentId, postId, token);
+      if (res.status === 201) return res.data;
+    } catch (error) {
+      return rejectWithValue({ message: "could not delete this comment" });
     }
   }
 );
@@ -163,6 +209,66 @@ const postSlice = createSlice({
     );
 
     builder.addCase(deleteUserPost.rejected, (state, payload) => {
+      state.isLoading = false;
+      state.posts = [];
+      state.error = payload.message;
+    });
+
+    // comment on user post
+    builder.addCase(addCommentToPost.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(
+      addCommentToPost.fulfilled,
+      (state, { payload: { posts } }) => {
+        state.isLoading = false;
+        state.posts = posts.reverse();
+        state.error = "";
+      }
+    );
+
+    builder.addCase(addCommentToPost.rejected, (state, payload) => {
+      state.isLoading = false;
+      state.posts = [];
+      state.error = payload.message;
+    });
+
+    // edit comment of post
+    builder.addCase(editPostComment.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(
+      editPostComment.fulfilled,
+      (state, { payload: { posts } }) => {
+        state.isLoading = false;
+        state.posts = posts.reverse();
+        state.error = "";
+      }
+    );
+
+    builder.addCase(editPostComment.rejected, (state, payload) => {
+      state.isLoading = false;
+      state.posts = [];
+      state.error = payload.message;
+    });
+
+    // delete comment of post
+    builder.addCase(deletePostComment.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(
+      deletePostComment.fulfilled,
+      (state, { payload: { posts } }) => {
+        state.isLoading = false;
+        state.posts = posts.reverse();
+        state.error = "";
+      }
+    );
+
+    builder.addCase(deletePostComment.rejected, (state, payload) => {
       state.isLoading = false;
       state.posts = [];
       state.error = payload.message;

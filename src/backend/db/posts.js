@@ -19,6 +19,20 @@ export const posts = [
       dislikedBy: [],
     },
     username: "adarshbalika",
+    comments: [
+      {
+        _id: uuid(),
+        content: "Nice, looks awesome",
+        username: "adarshbalika",
+        createdAt: formatDate(),
+      },
+      {
+        _id: uuid(),
+        content: "wow, what a beautiful picture",
+        username: "adarshbalika",
+        createdAt: formatDate(),
+      },
+    ],
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -34,6 +48,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "M_D_123",
+    comments: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
