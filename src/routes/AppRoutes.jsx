@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginPage, PostsPage, Profile, SignupPage } from "../page/pageExport";
+import { SinglePostPage } from "../page/SinglePostPage/SinglePostPage";
 import { PrivateRoute } from "./PrivateRoute";
 
 export const AppRoutes = () => {
@@ -22,6 +23,15 @@ export const AppRoutes = () => {
         element={
           <PrivateRoute>
             <Profile />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/post/:postId"
+        element={
+          <PrivateRoute>
+            <SinglePostPage />
           </PrivateRoute>
         }
       />

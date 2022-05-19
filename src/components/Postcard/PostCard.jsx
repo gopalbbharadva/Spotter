@@ -10,6 +10,7 @@ import {
   showPostFeatureModal,
 } from "../../features/postSlice";
 import { PostFeatureModal } from "../../page/Posts/components/PostFeatureModal/PostFeatureModal";
+import { Link } from "react-router-dom";
 
 export const PostCard = ({ post }) => {
   const dispatch = useDispatch();
@@ -19,64 +20,62 @@ export const PostCard = ({ post }) => {
     allPosts: { isShowPostFeatureModal, isShowPostModal },
   } = useSelector((state) => state);
   const postUser = users?.find((user) => user.username === post?.username);
-  console.log(post)
 
   return (
     <>
       {isShowPostModal && <PostModal post={post} />}
-      {isShowPostFeatureModal ? (
-        <PostFeatureModal />
-      ) : (
-        <div className="my-2 w-full max-w-xl border">
-          <div className="p-3 flex justify-start items-center">
-            <div className="w-10 h-10">
-              {postUser?.profileImg === "" ? (
-                <DummyAvatar
-                  firstname={postUser?.firstname}
-                  lastname={postUser?.lastname}
-                />
-              ) : (
-                <img
-                  className="profile-avatar"
-                  src={postUser?.profileImg}
-                  alt={postUser?.username}
-                />
-              )}
-            </div>
-            <p className="ml-2 text-sm">{post?.username}</p>
-            {post.username === user.username ? (
-              <button
-                onClick={() => {
-                  dispatch(showPostFeatureModal());
-                  dispatch(setCurrentPost({ post }));
-                  dispatch(setDeletePostId(post._id));
-                }}
-                className="text-xl ml-auto cursor-pointer hover:text-sky-500"
-              >
-                <BsThreeDots />
-              </button>
-            ) : null}
+      {isShowPostFeatureModal && <PostFeatureModal />}
+      <div className="my-2 w-full max-w-xl border">
+        <div className="p-3 flex justify-start items-center">
+          <div className="w-10 h-10">
+            {postUser?.profileImg === "" ? (
+              <DummyAvatar
+                firstname={postUser?.firstname}
+                lastname={postUser?.lastname}
+              />
+            ) : (
+              <img
+                className="profile-avatar"
+                src={postUser?.profileImg}
+                alt={postUser?.username}
+              />
+            )}
           </div>
-          {post?.postImage ? (
-            <img src={post?.postImage} alt={post?.username} />
+          <p className="ml-2 text-sm">{post?.username}</p>
+          {post?.username === user.username ? (
+            <button
+              onClick={() => {
+                dispatch(showPostFeatureModal());
+                dispatch(setCurrentPost({ post }));
+                dispatch(setDeletePostId(post._id));
+              }}
+              className="text-xl ml-auto cursor-pointer hover:text-sky-500"
+            >
+              <BsThreeDots />
+            </button>
           ) : null}
-          <p className="p-3">{post?.postText}</p>
-          <div className="features flex p-3 text-2xl">
-            <VscHeart />
-            <VscComment className="mx-3" />
-            <IoShareSocialOutline />
-            <VscBookmark className="ml-auto" />
-          </div>
-          <div className="p-3">
-            <p>
-              <small className="text-sm block font-bold">30 likes</small>
-              <small className="text-sm font-bold">Admin user </small>
-              <small className="text-sm opacity-70">{post?.postCaption}</small>
-            </p>
-            <small className="text-gray-500">12 hours ago</small>
-          </div>
         </div>
-      )}
+        {post?.postImage ? (
+          <img src={post?.postImage} alt={post?.username} />
+        ) : null}
+        <p className="p-3">{post?.postText}</p>
+        <div className="features flex p-3 text-2xl">
+          <VscHeart />
+          <Link to={`/post/${post?.id}`}>
+            <VscComment className="mx-3" />
+          </Link>
+          <IoShareSocialOutline />
+          <VscBookmark className="ml-auto" />
+        </div>
+        <div className="p-3">
+          <p>
+            <small className="text-sm block font-bold">30 likes</small>
+            <small className="text-sm font-bold">Admin user </small>
+            <small className="text-sm opacity-70">{post?.postCaption}</small>
+          </p>
+          <small className="text-gray-500">12 hours ago</small>
+        </div>
+      </div>
     </>
   );
 };

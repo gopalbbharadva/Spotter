@@ -23,7 +23,7 @@ export const PostsPage = () => {
   return (
     <div className="px-2 flex flex-col min-h-screen">
       <div className="flex justify-center">
-        <div className="flex justify-center items-end flex-col lg:w-2/3">
+        <div className="w-full flex justify-center items-end flex-col lg:w-2/3">
           {isLoading ? (
             <Loader />
           ) : (

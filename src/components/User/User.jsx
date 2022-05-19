@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { followUser, unFollowUser } from "../../features/usersSlice";
-import { Avatar } from "../Avatar/Avatar";
+import { Avatar } from "../componentExport";
 
 export const User = ({ suggestedUser }) => {
   const { _id, username } = suggestedUser;
