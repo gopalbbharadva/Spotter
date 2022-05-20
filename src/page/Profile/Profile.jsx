@@ -37,6 +37,10 @@ export const Profile = () => {
   const isFollowing = loggedInUser?.following.find(
     (user) => currentUser?.username === user.username
   );
+
+  const isFollwedByLoggedInUser = currentUser?.followers.find(
+    (user) => currentUser?.username === user.username
+  );
   const currentUserPosts = posts?.filter(
     (post) => post.username === currentUser?.username
   );
@@ -134,21 +138,13 @@ export const Profile = () => {
                   </p>
                   <button
                     onClick={() => setIsFollowersList(true)}
-                    className={`text-gray-500 ${
-                      currentUser?.username !== user.username
-                        ? "pointer-events-none"
-                        : ""
-                    }`}
+                    className={`text-gray-500 `}
                   >
                     <span>{currentUser?.followers.length}</span> followers
                   </button>
                   <button
                     onClick={() => setIsFollowingList(true)}
-                    className={`text-gray-500 ${
-                      currentUser?.username !== user.username
-                        ? "pointer-events-none"
-                        : ""
-                    }`}
+                    className={`text-gray-500`}
                   >
                     <span>{currentUser?.following.length}</span> following
                   </button>
