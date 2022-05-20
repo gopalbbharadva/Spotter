@@ -29,14 +29,14 @@ export const User = ({ suggestedUser }) => {
         >
           Unfollow
         </button>
-      ) : (
+      ) : username !== currentUser.username ? (
         <button
           onClick={() => dispatch(followUser({ userId: _id, token }))}
           className="text-sky-500 hover:text-sky-600 text"
         >
           Follow
         </button>
-      )}
+      ) : null}
     </div>
   );
 };
