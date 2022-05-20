@@ -29,7 +29,7 @@ export const Navbar = () => {
           placeholder="Search"
         />
         <div className="flex justify-center items-center">
-          <div className="features hidden text-2xl lg:flex">
+          <div className="features hidden text-2xl lg:flex lg:justify-center lg:items-center">
             <Featurelist />
           </div>
           <Link to={`/profile/${username}`}>
@@ -50,7 +50,7 @@ export const Navbar = () => {
           </Link>
         </div>
         <div
-          className="features flex p-2 justify-between w-full border 
+          className="features flex p-2 justify-between items-center w-full border 
         fixed bottom-0 text-2xl lg:hidden bg-white"
         >
           <Featurelist />

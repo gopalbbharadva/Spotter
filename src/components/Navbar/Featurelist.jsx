@@ -1,5 +1,5 @@
 import React from "react";
-import { VscDiffAdded, VscHome } from "react-icons/vsc";
+import { VscBookmark, VscDiffAdded, VscHome } from "react-icons/vsc";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineExplore } from "react-icons/md";
 import { NavLink } from "react-router-dom";
@@ -25,9 +25,12 @@ export const Featurelist = () => {
         <VscDiffAdded className="mr-5 " />
       </button>
       <MdOutlineExplore className="mr-5" />
-      <button onClick={() => setShowNotifyModal((prev) => !prev)}>
-        <IoNotificationsOutline className="mr-5" />
-      </button>
+      <NavLink
+        style={({ isActive }) => setProfileLink(isActive)}
+        to="/bookmark"
+      >
+        <VscBookmark className="mr-5" />
+      </NavLink>
     </>
   );
 };

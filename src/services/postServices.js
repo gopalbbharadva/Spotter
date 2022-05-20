@@ -68,3 +68,25 @@ export const deleteCommentOfPostService = (commentId, postId, token) =>
       },
     }
   );
+
+export const likePostService = (postId, token) =>
+  axios.post(
+    `/api/posts/like/${postId}`,
+    {},
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
+
+export const disLikePostService = (postId, token) =>
+  axios.post(
+    `/api/posts/dislike/${postId}`,
+    {},
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
