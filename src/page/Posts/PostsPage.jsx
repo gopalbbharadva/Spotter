@@ -3,15 +3,13 @@ import { Loader, PostCard, Sidebar } from "../../components/componentExport";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlineAdjustments } from "react-icons/hi";
 import { getAllUsers } from "../../features/usersSlice";
-import {
-  getAllPosts,
-  sortByLatest,
-  sortByOldest,
-  sortByTrending,
-} from "../../features/postSlice";
+import { getAllPosts } from "../../features/postSlice";
+import { sortPosts } from "../../backend/utils/SortPosts";
 
 export const PostsPage = () => {
   const dispatch = useDispatch();
+  const [showSortOptions, setShowSortOptions] = useState(false);
+  const [sortStatus, setSortStatus] = useState();
 
   const {
     auth: { user },
@@ -21,25 +19,30 @@ export const PostsPage = () => {
   } = useSelector((state) => state);
 
   const currentUser = users?.find(({ username }) => username === user.username);
-  const [showSortOptions, setShowSortOptions] = useState(false);
-  const [sortStatus, setSortStatus] = useState();
+  const currentUserPosts = posts.filter(
+    ({ username }) => username === currentUser.username
+  );
 
-  const sortByTrendingHanlder = () => {
+  const followingUserPost = posts.filter((post) =>
+    currentUser?.following?.find((user) => user.username === post.username)
+  );
+  const finalUserPosts = [...currentUserPosts, ...followingUserPost];
+
+  const resultPosts = sortPosts(sortStatus, finalUserPosts);
+
+  const sortByTrendingHandler = () => {
     setShowSortOptions(false);
-    dispatch(sortByTrending());
     setSortStatus("Trending");
   };
 
   const sortByLatestHandler = () => {
     setShowSortOptions(false);
-    dispatch(sortByLatest());
-    setSortStatus("Latest First");
+    setSortStatus("Latest");
   };
 
   const sortByOldestHandler = () => {
     setShowSortOptions(false);
-    dispatch(sortByOldest());
-    setSortStatus("Oldest First");
+    setSortStatus("Oldest");
   };
 
   useEffect(() => {
@@ -69,7 +72,7 @@ export const PostsPage = () => {
               >
                 <button
                   className="text-gray-600 hover:text-sky-500 py-1"
-                  onClick={sortByTrendingHanlder}
+                  onClick={sortByTrendingHandler}
                 >
                   Trending
                 </button>
@@ -93,7 +96,7 @@ export const PostsPage = () => {
           {isLoading || isBookMarkLoading ? (
             <Loader />
           ) : (
-            posts.map((post) => (
+            resultPosts.map((post) => (
               <PostCard post={post} key={post._id} currentUser={currentUser} />
             ))
           )}
