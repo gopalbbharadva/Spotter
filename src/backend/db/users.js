@@ -19,6 +19,23 @@ export const users = [
       "https://i.pinimg.com/736x/ef/b4/56/efb4563befb0ae1bed74f004785f3f0f.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    followers: [],
+    following: [
+      {
+        _id: uuid(),
+        firstname: "Mahesh",
+        lastname: "Deshmukh",
+        email: "maheshdeshmukh@gmail.com",
+        username: "M_D_123",
+        password: "Mahesh@123",
+        website: "https://maheshdeshmukh.netlify.app/",
+        bio: "true lier",
+        profileImg:
+          "https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -33,6 +50,24 @@ export const users = [
       "https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    followers: [
+      {
+        _id: uuid(),
+        firstname: "Adarsh",
+        lastname: "Balika",
+        email: "adarshbalika@gmail.com",
+        username: "adarshbalika",
+        password: "adarshBalika123",
+        website: "https://google.com/",
+        bio: "neogcamp student",
+        profileImg:
+          "https://i.pinimg.com/736x/ef/b4/56/efb4563befb0ae1bed74f004785f3f0f.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        followers: [],
+        following: [],
+      },
+    ],
   },
   {
     _id: uuid(),

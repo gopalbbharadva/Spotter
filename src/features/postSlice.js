@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import {
   addCommentToPostService,
   deleteCommentOfPostService,
@@ -16,7 +15,7 @@ const initialState = {
   isLoading: false,
   posts: [],
   error: "",
-  isShowPostModal: false,
+  isShowPostModal:  false,
   isShowPostFeatureModal: false,
   currentPost: {},
   isEditPost: false,
@@ -165,6 +164,21 @@ const postSlice = createSlice({
     },
     setDeletePostId: (state, { payload }) => {
       state.deletePostId = payload;
+    },
+    sortByTrending: (state) => {
+      state.posts = state.posts.sort(
+        (a, b) => b.likes.likeCount - a.likes.likeCount
+      );
+    },
+    sortByLatest: (state) => {
+      state.posts = state.posts.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+    },
+    sortByOldest: (state) => {
+      state.posts = state.posts.sort(
+        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      );
     },
   },
   extraReducers: (builder) => {
@@ -346,4 +360,7 @@ export const {
   setCurrentPost,
   postEdit,
   setDeletePostId,
+  sortByTrending,
+  sortByLatest,
+  sortByOldest,
 } = postSlice.actions;

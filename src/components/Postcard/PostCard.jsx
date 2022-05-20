@@ -121,10 +121,10 @@ export const PostCard = ({ post }) => {
                 {post.likes.likeCount > 1 ? " likes" : " like"}
               </small>
             ) : null}
-            <small className="text-sm font-bold">Admin user </small>
-            <small className="text-sm opacity-70">{post?.postCaption}</small>
+            <small className="text-sm font-bold">{post?.username}</small>
+            <small className="text-sm opacity-70"> {post?.postCaption}</small>
           </p>
-          <small className="text-gray-500">12 hours ago</small>
+          <small className="text-gray-500">{post?.createdAt}</small>
         </div>
       </div>
     </>
