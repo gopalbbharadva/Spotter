@@ -1,70 +1,128 @@
-# Getting Started with Create React App
+# Spotter.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Spotter is a social media plateform to connect the users.
 
-## Available Scripts
+*** 
 
-In the project directory, you can run:
+## Table of contents
 
-### `yarn start`
+* [Why Spotter ?](#why)
+* [What are the features ?](#features)
+* [What about tech stack ?](#tech-stack)
+* [Want to see live demo ?](#live-demo)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  * [Video](#video)
+  * [Live Demo](#link)
+  
+* [Can you predict future features ?](#future-features)
+* [Author](#author)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  * [Introduction](#introduction)
+  * [Social Media](#social-media)
+  
+* [Acknowledgement](#acknowledgement)
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+***
 
-### `yarn build`
+<a name="why"/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Why Spotter?
+* Spotter is a place where users can their online identity to stay connected with each other.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+***
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<a name="features"/>
 
-### `yarn eject`
+### What are the features ?
+* Authentication
+  * Signup
+  * Login
+  * Logout
+* Filter posts by
+  * Trending
+  * Latest
+  * Oldest
+* Create a post.
+  * Upload images
+  * Like
+  * Comments
+* Edit & delete post
+* User feed 
+* User profile
+  * Add profile picture
+  * Bio
+  * Portfolio
+* Follow/Unfollow user
+* Explore feed``
+* Add/Remove to/from bookmark
+***
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<a name="tech-stack"/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### What about tech stack?
+* **Front-End**:
+  * HTML5
+  * CSS3
+  * React Js
+  * Redux-toolkit
+* **Back-End**:
+  * Mockbee
+  * Mockman
+* **Hosting**:
+  * Github
+  * Netlify
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+***
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<a name="live-demo"/>
 
-## Learn More
+### Want to see live demo?
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<a name="video"/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Video
 
-### Code Splitting
+![Spotter - 20 May 2022](https://user-images.githubusercontent.com/75557011/169580257-89d3ce40-c3cd-480b-9cf1-c713981c17a0.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+***
+<a name="link"/>
 
-### Making a Progressive Web App
+#### Live Demo:
+* [spotter](https://sm-spotter.netlify.app/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+***
 
-### Advanced Configuration
+<a name="future-features"/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Can you predict the future features?
+* Draft post
+* Theme
+* Search user
 
-### Deployment
+***
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<a name="author"/>
 
-### `yarn build` fails to minify
+### Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<a name="introduction"/>
+
+#### Introduction
+* Hey developers, I'm Gopal, [Neog.Camp](https://neog.camp/) '2022 student. Check out my [Portfolio](https://gopalbharadva.netlify.app/)
+
+<a name="social-media"/>
+
+#### Social Media
+* [Twitter](https://twitter.com/Gopal_33_gb)
+* [LinkedIn](https://www.linkedin.com/in/gopal-bharadva-1aa880176/)
+
+***
+
+<a name="acknowledge"/>
+
+### Acknowledgement
+
+* Thanks to My mentor [Tanay Pratap](https://twitter.com/tanaypratap) who gave us a plateform called [Neog.Camp](https://neog.camp/) and all the [Neogrammar](https://neog.camp/) who helped me during the camp.
