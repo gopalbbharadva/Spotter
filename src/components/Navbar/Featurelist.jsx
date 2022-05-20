@@ -14,7 +14,6 @@ export const Featurelist = () => {
     };
   };
 
-  const { setShowNotifyModal } = useModal();
   const dispatch = useDispatch();
   return (
     <>
@@ -24,7 +23,9 @@ export const Featurelist = () => {
       <button onClick={() => dispatch(showPostModal())}>
         <VscDiffAdded className="mr-5 " />
       </button>
-      <MdOutlineExplore className="mr-5" />
+      <NavLink style={({ isActive }) => setProfileLink(isActive)} to="/explore">
+        <MdOutlineExplore className="mr-5" />
+      </NavLink>
       <NavLink
         style={({ isActive }) => setProfileLink(isActive)}
         to="/bookmark"
