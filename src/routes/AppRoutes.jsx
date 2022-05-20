@@ -1,8 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { BookmarkPage } from "../page/BookmarkPage/BookmarkPage";
-import { LoginPage, PostsPage, Profile, SignupPage } from "../page/pageExport";
+import {
+  LoginPage,
+  PostsPage,
+  Profile,
+  SignupPage,
+  ExplorePage,
+  NotFound,
+  BookmarkPage,
+} from "../page/pageExport";
 import { SinglePostPage } from "../page/SinglePostPage/SinglePostPage";
 import { PrivateRoute } from "./PrivateRoute";
 
@@ -38,6 +45,15 @@ export const AppRoutes = () => {
       />
 
       <Route
+        path="/explore"
+        element={
+          <PrivateRoute>
+            <ExplorePage />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
         path="/bookmark"
         element={
           <PrivateRoute>
@@ -45,10 +61,12 @@ export const AppRoutes = () => {
           </PrivateRoute>
         }
       />
+
+      <Route path="*" element={<NotFound />} />
       {!authData.token ? (
         <>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />{" "}
+          <Route path="/signup" element={<SignupPage />} />
         </>
       ) : (
         <>
