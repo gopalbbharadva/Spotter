@@ -1,25 +1,43 @@
 import React from "react";
 import { VscHeart, VscBookmark, VscComment } from "react-icons/vsc";
 import { IoShareSocialOutline } from "react-icons/io5";
+import { RiHeartFill } from "react-icons/ri";
 import { DummyAvatar, PostModal } from "../componentExport";
 import { BsThreeDots } from "react-icons/bs";
+import { RiBookmarkFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  disLikePost,
+  likePost,
   setCurrentPost,
   setDeletePostId,
   showPostFeatureModal,
 } from "../../features/postSlice";
 import { PostFeatureModal } from "../../page/Posts/components/PostFeatureModal/PostFeatureModal";
 import { Link } from "react-router-dom";
+import { bookmarkPost, removeFromBookmark } from "../../features/bookmarkSlice";
 
 export const PostCard = ({ post }) => {
   const dispatch = useDispatch();
   const {
-    auth: { user },
+    auth: { user, token },
     allUsers: { users },
     allPosts: { isShowPostFeatureModal, isShowPostModal },
+    bookmarks: { bookmarkPosts },
   } = useSelector((state) => state);
   const postUser = users?.find((user) => user.username === post?.username);
+
+  const isLikedByUser = post.likes.likedBy.find(
+    (post) => post.username === user.username
+  );
+
+  const isBookmarked = bookmarkPosts.find((postId) => postId === post._id);
+
+  const showPostHandler = () => {
+    dispatch(showPostFeatureModal());
+    dispatch(setCurrentPost({ post }));
+    dispatch(setDeletePostId(post._id));
+  };
 
   return (
     <>
@@ -44,11 +62,7 @@ export const PostCard = ({ post }) => {
           <p className="ml-2 text-sm">{post?.username}</p>
           {post?.username === user.username ? (
             <button
-              onClick={() => {
-                dispatch(showPostFeatureModal());
-                dispatch(setCurrentPost({ post }));
-                dispatch(setDeletePostId(post._id));
-              }}
+              onClick={showPostHandler}
               className="text-xl ml-auto cursor-pointer hover:text-sky-500"
             >
               <BsThreeDots />
@@ -60,16 +74,53 @@ export const PostCard = ({ post }) => {
         ) : null}
         <p className="p-3">{post?.postText}</p>
         <div className="features flex p-3 text-2xl">
-          <VscHeart />
+          {isLikedByUser ? (
+            <button
+              onClick={() => dispatch(disLikePost({ postId: post._id, token }))}
+            >
+              <RiHeartFill className="text-sky-500" />
+            </button>
+          ) : (
+            <button
+              onClick={() => dispatch(likePost({ postId: post._id, token }))}
+            >
+              <VscHeart />
+            </button>
+          )}
+
           <Link to={`/post/${post?.id}`}>
             <VscComment className="mx-3" />
           </Link>
+
           <IoShareSocialOutline />
-          <VscBookmark className="ml-auto" />
+          {isBookmarked ? (
+            <button
+              onClick={() =>
+                dispatch(removeFromBookmark({ postId: post._id, token }))
+              }
+              className="ml-auto"
+            >
+              <RiBookmarkFill className="text-sky-500" />
+            </button>
+          ) : (
+            <button
+              onClick={() =>
+                dispatch(bookmarkPost({ postId: post._id, token }))
+              }
+              className="ml-auto"
+            >
+              <VscBookmark />
+            </button>
+          )}
         </div>
         <div className="p-3">
           <p>
-            <small className="text-sm block font-bold">30 likes</small>
+            {post.likes.likeCount > 0 ? (
+              <small className="text-sm block font-bold">
+                {post.likes.likeCount}
+                {post.likes.likeCount > 1 ? " likes" : " like"}
+              </small>
+            ) : null}
             <small className="text-sm font-bold">Admin user </small>
             <small className="text-sm opacity-70">{post?.postCaption}</small>
           </p>

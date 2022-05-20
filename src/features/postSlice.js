@@ -1,10 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import {
   addCommentToPostService,
   deleteCommentOfPostService,
   deletePostService,
+  disLikePostService,
   editCommentToPostService,
   getAllPostsService,
+  likePostService,
   postService,
   updatePostService,
 } from "../services/postServices";
@@ -109,6 +112,31 @@ export const deletePostComment = createAsyncThunk(
       if (res.status === 201) return res.data;
     } catch (error) {
       return rejectWithValue({ message: "could not delete this comment" });
+    }
+  }
+);
+
+export const likePost = createAsyncThunk(
+  "post/likePost",
+  async ({ postId, token }, { rejectWithValue }) => {
+    try {
+      const res = await likePostService(postId, token);
+      if (res.status === 201) return res.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue({ message: "Like post failed" });
+    }
+  }
+);
+
+export const disLikePost = createAsyncThunk(
+  "/post/disLikePost",
+  async ({ postId, token }, { rejectWithValue }) => {
+    try {
+      const res = await disLikePostService(postId, token);
+      if (res.status === 201) return res.data;
+    } catch (error) {
+      return rejectWithValue({ message: "dis like post failed" });
     }
   }
 );
@@ -269,6 +297,39 @@ const postSlice = createSlice({
     );
 
     builder.addCase(deletePostComment.rejected, (state, payload) => {
+      state.isLoading = false;
+      state.posts = [];
+      state.error = payload.message;
+    });
+
+    // like a post
+    builder.addCase(likePost.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(likePost.fulfilled, (state, { payload: { posts } }) => {
+      state.isLoading = false;
+      state.posts = posts.reverse();
+      state.error = "";
+    });
+
+    builder.addCase(likePost.rejected, (state, payload) => {
+      state.isLoading = false;
+      state.posts = [];
+      state.error = payload.message;
+    });
+
+    builder.addCase(disLikePost.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(disLikePost.fulfilled, (state, { payload: { posts } }) => {
+      state.isLoading = false;
+      state.posts = posts.reverse();
+      state.error = "";
+    });
+
+    builder.addCase(disLikePost.rejected, (state, payload) => {
       state.isLoading = false;
       state.posts = [];
       state.error = payload.message;
