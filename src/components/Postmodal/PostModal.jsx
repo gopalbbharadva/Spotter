@@ -39,7 +39,10 @@ export const PostModal = () => {
       dispatch(
         updateUserPost({
           postId: postData._id,
-          postData: { ...postData, postImage: image },
+          postData: {
+            ...postData,
+            postImage: image === "" ? postData?.postImage : image,
+          },
           token,
         })
       );
@@ -87,7 +90,8 @@ export const PostModal = () => {
             dispatch(hidePostModal());
           }}
         >
-          {image === "" && postData?.postImage === "" ? (
+          {image === "" &&
+          (postData?.postImage === undefined || postData?.postImage === "") ? (
             <img className="h-20" src={DummyImage} alt="post preview" />
           ) : (
             <img
@@ -96,7 +100,7 @@ export const PostModal = () => {
                   ? postData?.postImage
                   : image
               }`}
-              alt="post preview"
+              alt="post not preview"
             />
           )}
           <input
