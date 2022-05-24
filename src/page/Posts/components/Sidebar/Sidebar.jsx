@@ -1,23 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { User } from "../../../../components/componentExport";
-import { DummyAvatar, Loader } from "../../../../components/componentExport";
+import {
+  DummyAvatar,
+  Loader,
+  User,
+} from "../../../../components/componentExport";
+import { filterUsers } from "./Utils/SearchUsers";
 
 export const Sidebar = ({ currentUser, users }) => {
   const {
-    user: { username },
-  } = useSelector((state) => state.auth);
+    auth: {
+      user: { username },
+    },
+  } = useSelector((state) => state);
+
+  const [searchText, setSearchText] = useState("");
 
   const { isLoading } = useSelector((state) => state.allUsers);
-  const suggestedUsers = users.filter((item) => item.username !== username);
+  const suggestedUsers = users?.filter((item) => item.username !== username);
+  const filteredUsers = filterUsers(suggestedUsers, searchText);
+
+  const filterBySearch = (e) => setSearchText(e.target.value);
+
+  const debounce = (cb, delay) => {
+    let timer;
+    return (e) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => cb(e), delay);
+    };
+  };
+  const searchFilter = debounce(filterBySearch, 1000);
 
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="sticky top-28">
+        <div>
           <Link to={`/profile/${username}`}>
             <div className="flex justify-start items-center cursor-pointer">
               <div className="w-16 h-16">
@@ -39,7 +59,14 @@ export const Sidebar = ({ currentUser, users }) => {
           </Link>
 
           <p className="mt-5 text-sky-500">Suggestions for you</p>
-          {suggestedUsers.map((user) => (
+          <input
+            onChange={searchFilter}
+            className="p-1 max-w-xs my-2 w-full border rounded 
+          focus:outline-none focus:border-sky-500"
+            type="search"
+            placeholder="Search"
+          />
+          {filteredUsers?.map((user) => (
             <User suggestedUser={user} key={user._id} />
           ))}
         </div>
