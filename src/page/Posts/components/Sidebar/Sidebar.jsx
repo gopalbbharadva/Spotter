@@ -30,7 +30,7 @@ export const Sidebar = ({ currentUser, users }) => {
       timer = setTimeout(() => cb(e), delay);
     };
   };
-  const searchFilter = debounce(filterBySearch, 1000);
+  const searchFilter = debounce(filterBySearch, 500);
 
   return (
     <>
