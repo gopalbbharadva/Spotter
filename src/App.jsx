@@ -1,6 +1,5 @@
 import "./App.css";
-import { Navbar, NotifyModal, PostModal } from "./components/componentExport";
-import { useModal } from "./contexts/ModalContext";
+import { Navbar } from "./components/componentExport";
 import { useSelector } from "react-redux";
 import { AppRoutes } from "./routes/AppRoutes";
 

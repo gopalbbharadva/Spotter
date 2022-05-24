@@ -51,10 +51,7 @@ export const PostsPage = () => {
   }, []);
 
   return (
-    <div
-      className="px-2 flex justify-center items-start 
-    min-h-screen"
-    >
+    <div className="px-2 relative flex justify-center items-start min-h-screen">
       {resultPosts.length > 0 ? (
         <div className="flex flex-col items-end lg:w-2/3 ">
           <div className="w-full max-w-xl mt-3 flex justify-between items-center">
@@ -112,7 +109,7 @@ export const PostsPage = () => {
           No posts found! Follow suggested accounts
         </p>
       )}
-      <div className="hidden w-96 p-10 my-2 lg:block">
+      <div className="hidden sticky top-10 w-96 p-10 my-2 lg:block">
         <Sidebar currentUser={currentUser} users={users} />
       </div>
     </div>
