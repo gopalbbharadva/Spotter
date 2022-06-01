@@ -1,11 +1,14 @@
 import React from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { User } from "../../../components/componentExport";
+import { useClickOutside } from "../../../hooks/useClickOutSide";
 
 export const FollowCombineModal = ({ userList, setShowFollowModal }) => {
+  const followModalRef = useClickOutside(() => setShowFollowModal());
+
   return (
     <div className="modal-container">
-      <div className="modal flex-col">
+      <div ref={followModalRef} className="modal flex-col">
         <button
           className="modal-close-btn"
           onClick={() => setShowFollowModal(false)}

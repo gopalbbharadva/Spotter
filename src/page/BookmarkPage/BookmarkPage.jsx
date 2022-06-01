@@ -13,7 +13,7 @@ export const BookmarkPage = () => {
   const dispatch = useDispatch();
   const currentUser = users?.find(({ username }) => username === user.username);
   const filteredBookMarkPosts = posts.filter((post) =>
-    bookmarkPosts.find((id) => id === post._id)
+    bookmarkPosts?.find((id) => id === post._id)
   );
 
   useEffect(() => {

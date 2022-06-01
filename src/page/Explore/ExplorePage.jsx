@@ -7,8 +7,7 @@ export const ExplorePage = () => {
   const {
     auth: { user },
     allUsers: { users },
-    allPosts: { posts, isLoading: isLikeLoading },
-    bookmarks: { isLoading },
+    allPosts: { posts, isLoading },
   } = useSelector((state) => state);
   const dispatch = useDispatch();
   const currentUser = users?.find(({ username }) => username === user.username);
@@ -20,7 +19,7 @@ export const ExplorePage = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full flex justify-center items-center flex-col lg:w-2/3">
-        {isLoading || isLikeLoading ? (
+        {isLoading ? (
           <Loader />
         ) : posts.length > 0 ? (
           posts?.map((post) => (
