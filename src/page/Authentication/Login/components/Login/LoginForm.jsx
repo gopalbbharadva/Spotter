@@ -20,6 +20,7 @@ export const LoginForm = () => {
       <h1 className="text-5xl mb-10 font-lobster text-center font-serif ">
         Spotter
       </h1>
+      <p className="font-thin text-center">Spotter is a social media plateform to share book related thoughts.</p>
       <form
         onSubmit={(e) => {
           e.preventDefault();
