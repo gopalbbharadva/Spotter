@@ -1,7 +1,7 @@
 .loader-container::after {
   content: "";
-  height: 5rem;
-  width: 5rem;
+  height: 3rem;
+  width: 3rem;
   border-radius: 50%;
   animation: loader-container 1s linear infinite;
 }
