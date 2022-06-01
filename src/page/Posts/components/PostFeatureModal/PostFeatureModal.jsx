@@ -1,6 +1,7 @@
 import React from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   deleteUserPost,
   hidePostModal,
@@ -12,6 +13,7 @@ import { useClickOutside } from "../../../../hooks/useClickOutSide";
 
 export const PostFeatureModal = ({ setShowPostFeatureModal }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     auth: { token },
     allPosts: { deletePostId },
@@ -22,6 +24,13 @@ export const PostFeatureModal = ({ setShowPostFeatureModal }) => {
     setShowPostFeatureModal(false);
     dispatch(showPostModal());
   };
+
+  const deletePostHandler = () => {
+    dispatch(deleteUserPost({ postId: deletePostId, token }));
+    setShowPostFeatureModal(false);
+    navigate("/");
+  };
+
   const closeModalHandler = () => {
     setShowPostFeatureModal(false);
     dispatch(hidePostModal());
@@ -44,10 +53,7 @@ export const PostFeatureModal = ({ setShowPostFeatureModal }) => {
         </button>
         <button
           className="text-red-500 hover:text-red-600"
-          onClick={() => {
-            dispatch(deleteUserPost({ postId: deletePostId, token }));
-            setShowPostFeatureModal(false);
-          }}
+          onClick={deletePostHandler}
         >
           Delete
         </button>
