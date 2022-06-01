@@ -28,7 +28,7 @@ export const posts = [
             likedBy: [],
             dislikedBy: [],
           },
-          username: "go_pal",
+          username: "M_D_123",
           comments: [
             {
               _id: uuid(),
@@ -75,7 +75,7 @@ export const posts = [
             likedBy: [],
             dislikedBy: [],
           },
-          username: "go_pal",
+          username: "Nikhil_23_nb",
           comments: [
             {
               _id: uuid(),
@@ -150,7 +150,7 @@ export const posts = [
             likedBy: [],
             dislikedBy: [],
           },
-          username: "go_pal",
+          username: "Himadri_892",
           comments: [
             {
               _id: uuid(),
