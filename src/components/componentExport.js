@@ -5,6 +5,7 @@ import { ProfileModal } from "../page/Profile/components/ProfileModal";
 import { Avatar } from "./Avatar/Avatar";
 import { DummyAvatar } from "./DummyAvatar/DummyAvatar";
 import { Loader } from "./Loader/Loader";
+import { Featurelist } from "./Navbar/Featurelist";
 import { Navbar } from "./Navbar/Navbar";
 import { PostCard } from "./Postcard/PostCard";
 import { PostModal } from "./Postmodal/PostModal";
@@ -12,6 +13,7 @@ import { User } from "./User/User";
 
 export {
   PostCard,
+  Featurelist,
   Navbar,
   User,
   PostModal,
