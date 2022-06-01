@@ -10,8 +10,9 @@ import {
 } from "../../features/postSlice";
 import { DummyAvatar } from "../componentExport";
 import DummyImage from "../../assets/DummyImage.png";
+import { useClickOutside } from "../../hooks/useClickOutSide";
 
-export const PostModal = () => {
+export const PostModal = ({ setShowPostModal }) => {
   const {
     auth: { user, token },
     allUsers: { users },
@@ -55,16 +56,26 @@ export const PostModal = () => {
       );
   };
 
+  const closeModalHandler = () => {
+    setShowPostModal(false);
+    dispatch(postEdit(false));
+    dispatch(hidePostModal());
+  };
+
+  const formHandler = (e) => {
+    e.preventDefault();
+    postSubmitHandler();
+    dispatch(postEdit(false));
+    setShowPostModal(false);
+    dispatch(hidePostModal());
+  };
+
+  const modalRef = useClickOutside(() => setShowPostModal());
+
   return (
     <div className="modal-container">
-      <div className="modal">
-        <button
-          className="modal-close-btn"
-          onClick={() => {
-            dispatch(hidePostModal());
-            dispatch(postEdit(false));
-          }}
-        >
+      <div ref={modalRef} className="modal">
+        <button className="modal-close-btn" onClick={closeModalHandler}>
           <VscChromeClose />
         </button>
         <div className="w-16 h-16 flex-shrink-0 mt-5">
@@ -81,15 +92,7 @@ export const PostModal = () => {
             />
           )}
         </div>
-        <form
-          className="post-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            postSubmitHandler();
-            dispatch(postEdit(false));
-            dispatch(hidePostModal());
-          }}
-        >
+        <form className="post-form" onSubmit={formHandler}>
           {image === "" &&
           (postData?.postImage === undefined || postData?.postImage === "") ? (
             <img className="h-20" src={DummyImage} alt="post preview" />

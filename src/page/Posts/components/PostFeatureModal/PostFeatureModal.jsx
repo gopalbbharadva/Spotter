@@ -3,13 +3,14 @@ import { VscChromeClose } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteUserPost,
-  hidePostFeatureModal,
+  hidePostModal,
   postEdit,
   setCurrentPost,
   showPostModal,
 } from "../../../../features/postSlice";
+import { useClickOutside } from "../../../../hooks/useClickOutSide";
 
-export const PostFeatureModal = () => {
+export const PostFeatureModal = ({ setShowPostFeatureModal }) => {
   const dispatch = useDispatch();
   const {
     auth: { token },
@@ -18,22 +19,25 @@ export const PostFeatureModal = () => {
 
   const updateHandler = () => {
     dispatch(postEdit(true));
-    dispatch(hidePostFeatureModal());
+    setShowPostFeatureModal(false);
     dispatch(showPostModal());
   };
   const closeModalHandler = () => {
-    dispatch(hidePostFeatureModal());
+    setShowPostFeatureModal(false);
+    dispatch(hidePostModal());
     dispatch(setCurrentPost({ post: {} }));
   };
 
+  const postFeatureRef = useClickOutside(() => setShowPostFeatureModal());
+
   return (
     <div className="modal-container">
-      <div className="modal flex-col">
-        <button className="modal-close-btn" onClick={() => closeModalHandler()}>
+      <div ref={postFeatureRef} className="modal flex-col">
+        <button className="modal-close-btn" onClick={closeModalHandler}>
           <VscChromeClose />
         </button>
         <button
-          onClick={() => updateHandler()}
+          onClick={updateHandler}
           className="text-sky-500 hover:text-sky-600"
         >
           Edit
@@ -42,7 +46,7 @@ export const PostFeatureModal = () => {
           className="text-red-500 hover:text-red-600"
           onClick={() => {
             dispatch(deleteUserPost({ postId: deletePostId, token }));
-            dispatch(hidePostFeatureModal());
+            setShowPostFeatureModal(false);
           }}
         >
           Delete

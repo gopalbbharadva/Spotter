@@ -4,6 +4,7 @@ import { FiCamera } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../features/usersSlice";
 import { DummyAvatar } from "../../../components/componentExport";
+import { useClickOutside } from "../../../hooks/useClickOutSide";
 
 export const ProfileModal = ({ currentUser, setIsEditProfile }) => {
   const dispatch = useDispatch();
@@ -19,11 +20,13 @@ export const ProfileModal = ({ currentUser, setIsEditProfile }) => {
     };
   };
 
+  const profileModalRef = useClickOutside(() => setIsEditProfile());
+
   return (
     <div className="modal-container">
-      <div className="modal">
+      <div ref={profileModalRef} className="modal">
         <button
-          onClick={() => setIsEditProfile((prev) => !prev)}
+          onClick={() => setIsEditProfile(false)}
           className="modal-close-btn"
         >
           <VscChromeClose />
