@@ -8,15 +8,15 @@ import { formatDate } from "../utils/authUtils";
 export const users = [
   {
     _id: uuid(),
-    firstname: "Adarsh",
-    lastname: "Balika",
-    email: "adarshbalika@gmail.com",
-    username: "adarshbalika",
-    password: "adarshBalika123",
+    firstname: "gopal",
+    lastname: "bharadva",
+    email: "gopal123@gmail.com",
+    username: "go_pal",
+    password: "gopal@123",
     website: "https://google.com/",
     bio: "neogcamp student",
     profileImg:
-      "https://i.pinimg.com/736x/ef/b4/56/efb4563befb0ae1bed74f004785f3f0f.jpg",
+      "https://images.vexels.com/media/users/3/145908/raw/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     followers: [],
