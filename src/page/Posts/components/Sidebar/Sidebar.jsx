@@ -66,9 +66,13 @@ export const Sidebar = ({ currentUser, users }) => {
             type="search"
             placeholder="Search"
           />
-          {filteredUsers?.map((user) => (
-            <User suggestedUser={user} key={user._id} />
-          ))}
+          {filteredUsers.length > 0 ? (
+            filteredUsers.map((user) => (
+              <User suggestedUser={user} key={user._id} />
+            ))
+          ) : (
+            <p className="text-center">No user found</p>
+          )}
         </div>
       )}
     </>

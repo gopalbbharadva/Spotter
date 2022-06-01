@@ -37,10 +37,7 @@ export const Profile = () => {
   const isFollowing = loggedInUser?.following.find(
     (user) => currentUser?.username === user.username
   );
-
-  const isFollwedByLoggedInUser = currentUser?.followers.find(
-    (user) => currentUser?.username === user.username
-  );
+ 
   const currentUserPosts = posts?.filter(
     (post) => post.username === currentUser?.username
   );
@@ -55,7 +52,7 @@ export const Profile = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="w-screen h-screen p-2 ">
+        <div className="w-screen p-2 ">
           {isEditProfile && (
             <ProfileModal
               currentUser={currentUser}
@@ -168,9 +165,13 @@ export const Profile = () => {
               className="mt-5 w-full flex justify-center items-center 
               flex-col max-w-full lg:w-2/3 "
             >
-              {currentUserPosts.map((post) => (
-                <PostCard post={post} key={post._id} />
-              ))}
+              {currentUserPosts.length > 0 ? (
+                currentUserPosts.map((post) => (
+                  <PostCard post={post} key={post._id} />
+                ))
+              ) : (
+                <p className="text-2xl">No Posts</p>
+              )}
             </div>
           </div>
         </div>
