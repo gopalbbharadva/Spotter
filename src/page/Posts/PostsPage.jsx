@@ -18,7 +18,7 @@ export const PostsPage = () => {
   } = useSelector((state) => state);
 
   const currentUser = users?.find(({ username }) => username === user.username);
-  const currentUserPosts = posts.filter(
+  const currentUserPosts = posts?.filter(
     ({ username }) => username === currentUser.username
   );
 
