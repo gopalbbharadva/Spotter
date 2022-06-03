@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { VscHeart, VscBookmark, VscComment } from "react-icons/vsc";
-import { IoShareSocialOutline } from "react-icons/io5";
 import { RiHeartFill } from "react-icons/ri";
 import { DummyAvatar } from "../componentExport";
 import { BsThreeDots } from "react-icons/bs";
@@ -30,18 +29,11 @@ export const PostCard = ({ post }) => {
 
   const postUser = users?.find((user) => user.username === post?.username);
 
-  const isLikedByUser = post.likes.likedBy.find(
+  const isLikedByUser = post?.likes.likedBy.find(
     (post) => post.username === user.username
   );
 
   const isBookmarked = bookmarkPosts?.find((postId) => postId === post._id);
-
-  const copyToClipBoard = async () => {
-    await navigator.clipboard.writeText(
-      `https://sm-spotter.netlify.app/post/${post.id}`
-    );
-    toast.success("Link copied to clip board", toastProps);
-  };
 
   const showPostHandler = () => {
     setShowPostFeatureModal(true);
@@ -123,9 +115,6 @@ export const PostCard = ({ post }) => {
             <VscComment className="mx-3 hover:text-sky-500" />
           </Link>
 
-          <button className="hover:text-sky-500" onClick={copyToClipBoard}>
-            <IoShareSocialOutline />
-          </button>
           {isBookmarked ? (
             <button onClick={removeBookMarkHandler} className="ml-auto">
               <RiBookmarkFill className="text-sky-500" />

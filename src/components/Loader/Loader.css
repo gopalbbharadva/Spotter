@@ -1,5 +1,6 @@
 .loader-container::after {
   content: "";
+  margin: 1rem;
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
