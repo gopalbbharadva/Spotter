@@ -45,11 +45,11 @@ export const SinglePostPage = () => {
   return (
     <div className="px-2 relative flex flex-col">
       <div className="flex justify-center">
-        <div className="w-full flex justify-center items-end flex-col lg:w-2/3">
+        <div className="w-full m-7 flex justify-center items-end flex-col lg:w-2/3">
           {isLoading ? (
             <Loader />
           ) : (
-            <div className="w-full max-w-xl m-7 flex justify-center items-start flex-col">
+            <div className="w-full max-w-xl flex justify-center items-start flex-col">
               <PostCard post={currentPost} currentUser={currentUser} />
               <div className="w-full lg:w-2/3">
                 <p className="self-start">Comments</p>
