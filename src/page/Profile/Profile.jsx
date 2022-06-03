@@ -52,7 +52,7 @@ export const Profile = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="w-screen p-2 ">
+        <div className="w-full p-2 ">
           {isEditProfile && (
             <ProfileModal
               currentUser={currentUser}

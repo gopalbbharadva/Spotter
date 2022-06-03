@@ -58,10 +58,10 @@ export const Sidebar = ({ currentUser, users }) => {
             </div>
           </Link>
 
-          <p className="mt-5 text-sky-500">Suggestions for you</p>
+          <p className="mt-5 text-center text-sky-500">Suggestions for you</p>
           <input
             onChange={searchFilter}
-            className="p-1 max-w-xs my-2 w-full border rounded 
+            className="p-1 max-w-xs my-2 w-full border border-gray-300 rounded 
           focus:outline-none focus:border-sky-500"
             type="search"
             placeholder="Search"
