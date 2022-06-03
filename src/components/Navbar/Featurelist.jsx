@@ -11,7 +11,6 @@ export const Featurelist = () => {
     allPosts: { isShowPostModal },
   } = useSelector((state) => state);
 
-
   const setProfileLink = (isActive) => {
     return {
       color: isActive ? "#0ea5e9" : "#000000",

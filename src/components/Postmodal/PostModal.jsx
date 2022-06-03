@@ -70,7 +70,7 @@ export const PostModal = ({ setShowPostModal }) => {
     dispatch(hidePostModal());
   };
 
-  const modalRef = useClickOutside(() => setShowPostModal());
+  const modalRef = useClickOutside(setShowPostModal);
 
   return (
     <div className="modal-container">
@@ -95,9 +95,10 @@ export const PostModal = ({ setShowPostModal }) => {
         <form className="post-form" onSubmit={formHandler}>
           {image === "" &&
           (postData?.postImage === undefined || postData?.postImage === "") ? (
-            <img className="h-20" src={DummyImage} alt="post preview" />
+            <img className="h-40" src={DummyImage} alt="post preview" />
           ) : (
             <img
+              className="h-40"
               src={`${
                 postData?.postImage !== "" && image === ""
                   ? postData?.postImage
