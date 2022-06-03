@@ -43,13 +43,13 @@ export const SinglePostPage = () => {
   }, []);
 
   return (
-    <div className="px-2 flex flex-col min-h-screen">
+    <div className="px-2 relative flex flex-col">
       <div className="flex justify-center">
         <div className="w-full flex justify-center items-end flex-col lg:w-2/3">
           {isLoading ? (
             <Loader />
           ) : (
-            <div className="my-10">
+            <div className="w-full max-w-xl m-7 flex justify-center items-start flex-col">
               <PostCard post={currentPost} currentUser={currentUser} />
               <div className="w-full lg:w-2/3">
                 <p className="self-start">Comments</p>
@@ -95,7 +95,7 @@ export const SinglePostPage = () => {
             </div>
           )}
         </div>
-        <div className="hidden w-96 p-10 my-2 lg:block">
+        <div className="hidden sticky top-10 w-96 p-10 my-2 lg:block">
           <Sidebar currentUser={currentUser} users={users} />
         </div>
       </div>

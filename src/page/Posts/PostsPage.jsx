@@ -15,11 +15,10 @@ export const PostsPage = () => {
     auth: { user },
     allUsers: { users },
     allPosts: { posts, isLoading },
-    bookmarks: { isLoading: isBookMarkLoading },
   } = useSelector((state) => state);
 
   const currentUser = users?.find(({ username }) => username === user.username);
-  const currentUserPosts = posts.filter(
+  const currentUserPosts = posts?.filter(
     ({ username }) => username === currentUser.username
   );
 
@@ -91,7 +90,7 @@ export const PostsPage = () => {
             </div>
           </div>
           <div className="w-full max-w-xl flex justify-center items-center flex-col ">
-            {isLoading || isBookMarkLoading ? (
+            {isLoading ? (
               <Loader />
             ) : (
               resultPosts.map((post) => (

@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { DummyAvatar } from "../componentExport";
-import { Featurelist } from "./Featurelist";
+import { DummyAvatar, Featurelist } from "../componentExport";
 
 export const Navbar = () => {
   const {
@@ -16,18 +15,12 @@ export const Navbar = () => {
 
   return (
     <nav className="p-3 top-0 sticky z-10 shadow-md shadow-sky-100 bg-white">
-      <div className="flex justify-evenly items-center">
+      <div className="flex justify-between items-center lg:justify-around">
         <Link to="/">
           <h1 className="text-3xl font-lobster text-sky-500 cursor-pointer">
             Spotter
           </h1>
         </Link>
-        <input
-          className="p-1 max-w-xs mx-2 w-full border rounded bg-gray-100 
-          focus:outline-none focus:border-sky-500"
-          type="search"
-          placeholder="Search"
-        />
         <div className="flex justify-center items-center">
           <div className="features hidden text-2xl lg:flex lg:justify-center lg:items-center">
             <Featurelist />

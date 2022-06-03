@@ -1,26 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { VscBookmark, VscDiffAdded, VscHome } from "react-icons/vsc";
-import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineExplore } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-import { useModal } from "../../contexts/ModalContext";
-import { useDispatch } from "react-redux";
-import { showPostModal } from "../../features/postSlice";
+import { useSelector } from "react-redux";
+import { PostModal } from "../componentExport";
 
 export const Featurelist = () => {
+  const [showPostModal, setShowPostModal] = useState(false);
+  const {
+    allPosts: { isShowPostModal },
+  } = useSelector((state) => state);
+
+
   const setProfileLink = (isActive) => {
     return {
       color: isActive ? "#0ea5e9" : "#000000",
     };
   };
 
-  const dispatch = useDispatch();
   return (
     <>
       <NavLink style={({ isActive }) => setProfileLink(isActive)} to="/">
         <VscHome className="mr-5" />
       </NavLink>
-      <button onClick={() => dispatch(showPostModal())}>
+      <button onClick={() => setShowPostModal(true)}>
         <VscDiffAdded className="mr-5 " />
       </button>
       <NavLink style={({ isActive }) => setProfileLink(isActive)} to="/explore">
@@ -32,6 +35,11 @@ export const Featurelist = () => {
       >
         <VscBookmark className="mr-5" />
       </NavLink>
+      {showPostModal || isShowPostModal ? (
+        <PostModal setShowPostModal={setShowPostModal} />
+      ) : (
+        ""
+      )}
     </>
   );
 };

@@ -15,11 +15,12 @@ const initialState = {
   isLoading: false,
   posts: [],
   error: "",
-  isShowPostModal:  false,
+  isShowPostModal: false,
   isShowPostFeatureModal: false,
   currentPost: {},
   isEditPost: false,
   deletePostId: "",
+  isLiked: false,
 };
 
 export const getAllPosts = createAsyncThunk(
@@ -75,12 +76,10 @@ export const deleteUserPost = createAsyncThunk(
 export const addCommentToPost = createAsyncThunk(
   "post/addCommentToPost",
   async ({ commentData, postId, token }, { rejectWithValue }) => {
-    console.log(commentData);
     try {
       const res = await addCommentToPostService(commentData, postId, token);
       if (res.status === 201) return res.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue({ message: "Adding comments failed" });
     }
   }
@@ -318,33 +317,34 @@ const postSlice = createSlice({
 
     // like a post
     builder.addCase(likePost.pending, (state) => {
-      state.isLoading = true;
+      state.isLiked = true;
     });
 
     builder.addCase(likePost.fulfilled, (state, { payload: { posts } }) => {
-      state.isLoading = false;
+      state.isLiked = false;
       state.posts = posts.reverse();
       state.error = "";
     });
 
     builder.addCase(likePost.rejected, (state, payload) => {
-      state.isLoading = false;
+      state.isLiked = false;
       state.posts = [];
       state.error = payload.message;
     });
 
+    // dislike the post
     builder.addCase(disLikePost.pending, (state) => {
-      state.isLoading = true;
+      state.isLiked = true;
     });
 
     builder.addCase(disLikePost.fulfilled, (state, { payload: { posts } }) => {
-      state.isLoading = false;
+      state.isLiked = false;
       state.posts = posts.reverse();
       state.error = "";
     });
 
     builder.addCase(disLikePost.rejected, (state, payload) => {
-      state.isLoading = false;
+      state.isLiked = false;
       state.posts = [];
       state.error = payload.message;
     });
