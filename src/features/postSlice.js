@@ -76,12 +76,10 @@ export const deleteUserPost = createAsyncThunk(
 export const addCommentToPost = createAsyncThunk(
   "post/addCommentToPost",
   async ({ commentData, postId, token }, { rejectWithValue }) => {
-    console.log(commentData);
     try {
       const res = await addCommentToPostService(commentData, postId, token);
       if (res.status === 201) return res.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue({ message: "Adding comments failed" });
     }
   }
